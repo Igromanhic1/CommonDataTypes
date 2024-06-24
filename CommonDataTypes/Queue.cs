@@ -48,5 +48,12 @@ namespace CommonDataTypes
 
             return _root.Value;
         }
+
+        public void Clean()
+        {
+            _count = 0;
+            _root = null;
+            _last = null;
+        }
     }
 }
