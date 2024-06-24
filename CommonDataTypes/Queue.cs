@@ -10,7 +10,7 @@ namespace CommonDataTypes
         private StackNode<T> _root;
         private StackNode<T> _last;
 
-        private Exception _emptyExaption = new Exception($"{nameof(Queue<T>)} is empty");
+        private Exception _emptyException = new Exception($"{nameof(Queue<T>)} is empty");
 
         public Queue() { }
         public Queue(IEnumerable<T> array)
@@ -40,7 +40,7 @@ namespace CommonDataTypes
         public T Pop()
         {
             if (_root == null)
-                throw _emptyExaption;
+                throw _emptyException;
 
             T curentItem = _root.Value;
             _root = _root.Next;
@@ -53,7 +53,7 @@ namespace CommonDataTypes
         public T Pick()
         {
             if (_root == null)
-                throw _emptyExaption;
+                throw _emptyException;
 
             return _root.Value;
         }

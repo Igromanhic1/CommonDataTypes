@@ -9,7 +9,7 @@ namespace CommonDataTypes
         private int _count;
         private StackNode<T> _root;
 
-        private Exception _emptyExaption = new Exception($"{nameof(Stack<T>)} is empty");
+        private Exception _emptyException = new Exception($"{nameof(Stack<T>)} is empty");
 
         public Stack() { }
 
@@ -39,7 +39,7 @@ namespace CommonDataTypes
         public T Pop()
         {
             if (_root == null)
-                throw _emptyExaption;
+                throw _emptyException;
 
             T curentItem = _root.Value;
             _root = _root.Next;
@@ -52,7 +52,7 @@ namespace CommonDataTypes
         public T Pick()
         {
             if (_root == null)
-                throw _emptyExaption;
+                throw _emptyException;
 
             return _root.Value;
         }
