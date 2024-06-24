@@ -10,6 +10,13 @@ namespace CommonDataTypes
         private StackNode<T> _root;
         private StackNode<T> _last;
 
+        public Queue() { }
+        public Queue(IEnumerable<T> array)
+        {
+            foreach (T element in array)
+                Push(element);
+        }
+
         public void Push(T item)
         {
             StackNode<T> newNode = new StackNode<T>(item);

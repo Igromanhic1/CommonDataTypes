@@ -11,6 +11,12 @@ namespace CommonDataTypes
 
         public Stack() { }
 
+        public Stack(IEnumerable<T> array)
+        {
+            foreach(T element in array)
+                Push(element);
+        }
+
         public void Push(T item)
         {
             StackNode<T> newNode = new StackNode<T>(item);
