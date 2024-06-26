@@ -1,11 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Collections;
 
 namespace CommonDataTypes
 {
-    public sealed class Set<T>
+    public sealed class Set<T> : IEnumerator<T>, IEnumerable<T>
     {
         public int Count => _array.Length;
+        public T Current => _array[_enumeratorIndex];
         public T this[int index]
         {
             get
@@ -15,10 +16,13 @@ namespace CommonDataTypes
         }
 
         private T[] _array;
+        private int _enumeratorIndex;
+        object IEnumerator.Current => _array[_enumeratorIndex];
 
         public Set()
         {
             Clear();
+            Reset();
         }
 
         public void Add(T item)
@@ -70,5 +74,27 @@ namespace CommonDataTypes
         }
 
         public bool AreContains(T item) => IndexOf(item) != -1;
+
+        public IEnumerator<T> GetEnumerator() => this;
+
+        public bool MoveNext()
+        {
+            if (_enumeratorIndex < Count-1)
+            {
+                _enumeratorIndex++;
+                return true;
+            }
+
+            return false;
+        }
+
+        public void Reset() => _enumeratorIndex = -1;
+
+        public void Dispose()
+        {
+            _array = null;
+        }
+
+        IEnumerator IEnumerable.GetEnumerator() => this;
     }
 }
