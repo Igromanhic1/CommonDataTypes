@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections;
-using System.Runtime.CompilerServices;
 
 namespace CommonDataTypes
 {
@@ -35,11 +34,11 @@ namespace CommonDataTypes
 
         public void Add(T item)
         {
-            T[] newArray = new T[Count+1];
+            T[] newArray = new T[Count + 1];
 
             CopyArrayTo(newArray);
 
-            newArray[newArray.Length-1] = item;
+            newArray[newArray.Length - 1] = item;
             _array = newArray;
         }
 
@@ -143,7 +142,7 @@ namespace CommonDataTypes
 
         private void CopyArrayTo(T[] newArray)
         {
-            for (int i = 0; i < Count; i++)
+            for (int i = 0; i < Count && i < newArray.Length; i++)
                 newArray[i] = _array[i];
         }
     }

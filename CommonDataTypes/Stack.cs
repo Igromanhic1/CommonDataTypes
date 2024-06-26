@@ -4,12 +4,10 @@ namespace CommonDataTypes
 {
     public sealed class Stack<T>
     {
-        public int Count => _count;
-
-        private int _count;
+        public int Count {  get; private set; }
         private StackNode<T> _root;
 
-        private Exception _emptyException = new Exception($"{nameof(Stack<T>)} is empty");
+        private Exception _emptyException => new Exception($"{nameof(Stack<T>)} is empty");
 
         public Stack() { }
 
@@ -33,7 +31,7 @@ namespace CommonDataTypes
                 _root = newNode;
             }
 
-            _count++;
+            Count++;
         }
 
         public T Pop()
@@ -44,7 +42,7 @@ namespace CommonDataTypes
             T curentItem = _root.Value;
             _root = _root.Next;
 
-            _count--;
+            Count--;
 
             return curentItem;
         }
@@ -59,7 +57,7 @@ namespace CommonDataTypes
 
         public void Clean()
         {
-            _count = 0;
+            Count = 0;
             _root = null;
         }
     }

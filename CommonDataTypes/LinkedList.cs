@@ -4,9 +4,7 @@ namespace CommonDataTypes
 {
     public sealed class LinkedList<T>
     {
-        public int Count => _count;
-
-        private int _count;
+        public int Count { get; private set; }
         private ListNode<T> _root;
         private ListNode<T> _last;
 
@@ -27,7 +25,7 @@ namespace CommonDataTypes
                 _last = newNode;
             }
 
-            _count++;
+            Count++;
         }
 
         public void Insert(int index, T item)
@@ -52,7 +50,7 @@ namespace CommonDataTypes
                 newNode.PrevConection(GetNodeByIndex(index));
             }
 
-            _count++;
+            Count++;
         }
 
         public void Remove(T item) => RemoveAt(IndexOf(item));
@@ -85,14 +83,14 @@ namespace CommonDataTypes
                 GetNodeByIndex(index).Disconect();
             }
 
-            _count--;
+            Count--;
         }
 
         public void Clear()
         {
             _root = null;
             _last = null;
-            _count = 0;
+            Count = 0;
         }
 
         public int IndexOf(T item)
