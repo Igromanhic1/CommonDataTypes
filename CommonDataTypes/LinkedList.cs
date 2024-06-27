@@ -1,12 +1,29 @@
 ﻿using System;
+using System.Collections;
 
 namespace CommonDataTypes
 {
-    public sealed class LinkedList<T>
+    public sealed class LinkedList<T> : IEnumerator<T>, IEnumerable<T>
     {
         public int Count { get; private set; }
+        public T this[int index]
+        {
+            get
+            {
+                return GetNodeByIndex(index).Value;
+            }
+            set
+            {
+                GetNodeByIndex(index).Value = value;
+            }
+        }
+        public T Current => _current.Value;
+
         private ListNode<T> _root;
         private ListNode<T> _last;
+        private ListNode<T> _current;
+        object IEnumerator.Current => Current;
+
 
         public LinkedList() { }
 
@@ -109,8 +126,23 @@ namespace CommonDataTypes
             return -1;
         }
 
-        public T GetByIndex(int index) => GetNodeByIndex(index).Value;
-        public void SetByIndex(int index, T value) => GetNodeByIndex(index).Value = value;
+        public bool MoveNext()
+        {
+            if(_current == null)
+                _current = _root;
+            else
+                _current = _current.Next;
+
+            return _current != null;
+        }
+
+        public void Reset() => _current = null;
+
+        public IEnumerator<T> GetEnumerator() => this;
+
+        public void Dispose() => Clear();
+
+        IEnumerator IEnumerable.GetEnumerator() => this;
 
         private ListNode<T> GetNodeByIndex(int index)
         {
