@@ -90,7 +90,10 @@ namespace CommonDataTypes
 
         public void Reset() => _enumeratorIndex = -1;
 
-        public void Dispose() { }
+        public void Dispose()
+        {
+            Reset();
+        }
 
         IEnumerator IEnumerable.GetEnumerator() => this;
     }

@@ -135,7 +135,10 @@ namespace CommonDataTypes
 
         public void Reset() => _enumeratorIndex = -1;
 
-        public void Dispose() { }
+        public void Dispose()
+        {
+            Reset();
+        }
 
         private void CopyArrayTo(T[] newArray)
         {
