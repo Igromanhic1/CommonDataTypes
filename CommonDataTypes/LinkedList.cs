@@ -140,7 +140,7 @@ namespace CommonDataTypes
 
         public IEnumerator<T> GetEnumerator() => this;
 
-        public void Dispose() => Clear();
+        public void Dispose() { }
 
         IEnumerator IEnumerable.GetEnumerator() => this;
 
