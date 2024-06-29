@@ -99,10 +99,12 @@ namespace CommonDataTypes
 
         public void Clear() => _array = new T[0];
 
-        public int IndexOf(T key)
+        public int IndexOf(T key) => SearchBy((x) => x.Equals(key));
+
+        public int SearchBy(Func<T,bool> func)
         {
             for (int i = 0; i < Count; i++)
-                if (_array[i].Equals(key))
+                if (func.Invoke(_array[i]))
                     return i;
             return -1;
         }

@@ -110,13 +110,15 @@ namespace CommonDataTypes
             Count = 0;
         }
 
-        public int IndexOf(T item)
+        public int IndexOf(T item) => SearchBy((x) => x.Equals(item));
+
+        public int SearchBy(Func<T,bool> func)
         {
             int curentIndex = 0;
             ListNode<T> curentNode = _root;
             while (curentNode != null)
             {
-                if(curentNode.Value.Equals(item))
+                if (func.Invoke(curentNode.Value))
                     return curentIndex;
 
                 curentNode = curentNode.Next;
