@@ -78,6 +78,6 @@ namespace CommonDataTypes
             return false;
         }
 
-        private int ComputeIndex(T item, int chunksCount) => item.GetHashCode() % chunksCount;
+        private int ComputeIndex(T item, int chunksCount) => Math.Abs(item.GetHashCode()) % chunksCount;
     }
 }
